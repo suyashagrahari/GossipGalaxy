@@ -8,6 +8,9 @@ import ChatContainer from "../components/ChatContainer";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
 
+
+
+
 export default function Chat() {
   const navigate = useNavigate();
   const socket = useRef();
@@ -27,7 +30,7 @@ export default function Chat() {
   }, []);
   useEffect(() => {
     if (currentUser) {
-      socket.current = io(host);
+      socket.current = io(process.env.NEXT_PUBLIC_SOCKET_IO_UR);
       socket.current.emit("add-user", currentUser._id);
     }
   }, [currentUser]);
