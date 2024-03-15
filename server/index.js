@@ -7,16 +7,8 @@ const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
 
-
+app.use(cors());
 app.use(express.json());
-
-// Configure CORS for Express
-app.use(
-  cors({
-    origin: "http://localhost:3000/",
-    credentials: true,
-  })
-);
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -33,14 +25,13 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
 );
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000/",
-    methods: ["GET", "POST"]
+    origin: "gossip-galaxy-six.vercel.app",
+    credentials: true,
   },
 });
 

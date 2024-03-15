@@ -1,0 +1,8 @@
+{
+    "root": "public",
+    "headers": {
+      "/manifest.json": {
+        "Content-Type": "application/manifest+json"
+      }
+    }
+  }
